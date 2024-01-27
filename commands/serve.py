@@ -31,7 +31,7 @@ new_rds = Redis.from_existing_index(
 
 retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 4})
 
-# chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="hoya123")
+# chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="chat")
 chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
 
 
