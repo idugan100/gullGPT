@@ -31,22 +31,35 @@ print("preparing to load csv files")
 csv_loader1 = CSVLoader(file_path='../data/csv/classes.csv',csv_args={
     'delimiter': ',',
     'quotechar': '"',
-    'fieldnames': ["description","courseNumber","departmentCode","courseTitle","avg_gpa","A_rate","B_rate","C_rate","D_rate","F_rate","W_rate","total_enrollment"]
+    'fieldnames': ["description","courseNumber","departmentCode","courseTitle","avg_gpa","A_rate","B_rate","C_rate","D_rate","F_rate","Withdraw_rate","total_enrollment"]
 })
 csv_loader2 = CSVLoader(file_path='../data/csv/ap.csv',csv_args={
     'delimiter': ',',
     'quotechar': '"',
     'fieldnames': ['AP course', 'minimum score on ap test', 'college credits awarded','coursed granted prior to fall 2024','courses grated after fall 2024']
 })
-csv_loader2 = CSVLoader(file_path='../data/csv/ib.csv',csv_args={
+csv_loader3 = CSVLoader(file_path='../data/csv/ib.csv',csv_args={
     'delimiter': ',',
     'quotechar': '"',
     'fieldnames': ['International Baccalaureate (IB)', 'credits granted', 'courses granted']
 })
+csv_loader4 = CSVLoader(file_path='../data/csv/professors.csv',csv_args={
+    'delimiter': ',',
+    'quotechar': '"',
+    'fieldnames': ["firstName","lastName","avg_gpa","total_enrollment","Withdraw_rate","A_rate","B_rate","C_rate","D_rate","F_rate","courses_taught"
+]
+})
 
 print("loaded csv files")
 
-data = [*html_loader.load(),*csv_loader1.load(),*csv_loader2.load(),*pdf_loader.load()]
+data = [
+    *html_loader.load(),
+    *csv_loader1.load(),
+    *csv_loader2.load(),
+    *csv_loader3.load(),
+    *csv_loader4.load(),
+    *pdf_loader.load()
+]
 
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=2000,
