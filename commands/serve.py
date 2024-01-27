@@ -1,19 +1,51 @@
-from langchain_openai import OpenAIEmbeddings
+from operator import itemgetter
+from typing import List, Tuple
 from dotenv import load_dotenv
-import os
-from langchain_community.vectorstores.redis import Redis
-from langchain_openai import ChatOpenAI
-from langchain_openai import AzureChatOpenAI
-from langchain.prompts.chat import ChatPromptTemplate
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from fastapi import FastAPI
+from langchain.chat_models import ChatOpenAI
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.prompts import ChatPromptTemplate
+from langchain.prompts.prompt import PromptTemplate
+from langchain.schema import format_document
+from langchain.schema.output_parser import StrOutputParser
+from langchain.schema.runnable import RunnableMap, RunnablePassthrough
+from langchain.vectorstores import FAISS
+
 from langserve import add_routes
-from langchain_openai import AzureOpenAIEmbeddings
-from langchain.memory import ConversationBufferMemory
+from langserve.pydantic_v1 import BaseModel, Field
+from langchain_community.vectorstores.redis import Redis
+import os
 
 
+_TEMPLATE = """
+Please respond as a friendly and intelligent admissions advisor for salisbury university. 
+you may use the below contex to answer the question if you don't have information based on the contex provided make an educated guess. 
+tactfully redirect the conversation to salisbury univeristy if the question was not about salisbury univeristy. 
+Please answer in the same language the question was asked in. Please consider the chat history when answering
+
+Chat History:
+{chat_history}
+Follow Up Input: {question}
+Standalone question:"""
+CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(_TEMPLATE)
+
+ANSWER_TEMPLATE = """Answer the question based on the following context:
+{context}
+
+Question: {question}
+"""
+ANSWER_PROMPT = ChatPromptTemplate.from_template(ANSWER_TEMPLATE)
+
+DEFAULT_DOCUMENT_PROMPT = PromptTemplate.from_template(template="{page_content}")
+
+def _format_chat_history(chat_history: List[Tuple]) -> str:
+    """Format chat history into a string."""
+    buffer = ""
+    for dialogue_turn in chat_history:
+        human = "Human: " + dialogue_turn[0]
+        ai = "Assistant: " + dialogue_turn[1]
+        buffer += "\n" + "\n".join([human, ai])
+    return buffer
 
 load_dotenv()
 
@@ -30,42 +62,48 @@ new_rds = Redis.from_existing_index(
     redis_url=REDIS_URL,
     schema="redis_schema.yaml",
 )
-
 retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 6})
 
-# chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="chat")
-chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
+_inputs = RunnableMap(
+    standalone_question=RunnablePassthrough.assign(
+        chat_history=lambda x: _format_chat_history(x["chat_history"])
+    )
+    | CONDENSE_QUESTION_PROMPT
+    | ChatOpenAI(temperature=0)
+    | StrOutputParser(),
+)
+_context = {
+    "context": itemgetter("standalone_question") | retriever,
+    "question": lambda x: x["standalone_question"],
+}
 
 
-template = "Please respond as a friendly and intelligent admissions advisor for salisbury university. you may use the below contex to answer the question if you don't have information based on the contex provided make an educated guess. tactfully redirect the conversation to salisbury univeristy if the question was not about salisbury univeristy. Please answer in the same language the question was asked in. Consider the previous message history:{history} Context:{context} Question: {question}"
+# User input
+class ChatHistory(BaseModel):
+    """Chat history with the bot."""
 
-chat_prompt = ChatPromptTemplate.from_messages([
-    ("system", template),
-])
+    chat_history: List[Tuple[str, str]] = Field(
+        ...,
+        extra={"widget": {"type": "chat", "input": "question"}},
+    )
+    question: str
 
-memory = ConversationBufferMemory(return_messages=True,output_key="ai", 
-        input_key="human")
 
-memory.save_context({"human":"my name is isaac"},{"ai":"hello isaac"})
-
-chain = ({"context": retriever, "question": RunnablePassthrough(),"history": RunnableLambda(memory.load_memory_variables),}
-        | chat_prompt
-        | chat_model
-        | StrOutputParser()
-        )
+conversational_qa_chain = (
+    _inputs | _context | ANSWER_PROMPT | ChatOpenAI() | StrOutputParser()
+)
+chain = conversational_qa_chain.with_types(input_type=ChatHistory)
 
 app = FastAPI(
     title="LangChain Server",
     version="1.0",
-    description="A simple api server using Langchain's Runnable interfaces",
+    description="Spin up a simple api server using Langchain's Runnable interfaces",
 )
-
-add_routes(
-    app,
-    chain,
-    path="/su",
-)
-
+# Adds routes to the app for using the chain under:
+# /invoke
+# /batch
+# /stream
+add_routes(app, chain, enable_feedback_endpoint=True,path="/su")
 
 if __name__ == "__main__":
     import uvicorn
