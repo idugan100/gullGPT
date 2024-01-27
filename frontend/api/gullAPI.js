@@ -1,18 +1,15 @@
 //import from 
 messages=[]
 function insertNewChat(event){
-
     event.preventDefault();
     let formData = new FormData(event.target);
   
     let inputValue = formData.get('message');
     messages.push({"user":inputValue})
-    let input = document.getElementById("message");
-    input.value=""
+    loading_state()
     render_message(messages[messages.length -1])
     chat_model()
 }
-
 
 async function chat_model(){
     url="http://127.0.0.1:8000/su/invoke"
@@ -30,6 +27,7 @@ async function chat_model(){
     const responseData = await response.json(); // Parse the response body as JSON
     messages.push({"ai":responseData.output})
     render_message(messages[messages.length -1])
+    end_loading_state()
 }
 
 function render_message(element){
@@ -56,4 +54,21 @@ function clear_conversation(){
     messages=[]
     let chatHolder = document.getElementById("chatHolder")
     chatHolder.innerHTML=""
+}
+
+function loading_state(){
+    let input = document.getElementById("message");
+    input.value=""
+    let inputBar=document.getElementById("inputBar")
+    inputBar.classList.add("animate-bounce")
+    input.disabled=true
+    input.placeholder="Loading response ..."
+}
+
+function end_loading_state(){
+    let input = document.getElementById("message");
+    let inputBar=document.getElementById("inputBar")
+    inputBar.classList.remove("animate-bounce")
+    input.disabled=false
+    input.placeholder="Type here ..."
 }
