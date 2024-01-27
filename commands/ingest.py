@@ -7,6 +7,8 @@ from langchain_community.document_loaders.csv_loader import CSVLoader
 import os
 from langchain_openai import AzureOpenAIEmbeddings
 from langchain_community.document_loaders import DirectoryLoader
+from langchain_community.document_loaders import PyPDFLoader
+
 
 
 load_dotenv()
@@ -16,6 +18,9 @@ os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
 REDIS=os.getenv("REDIS_URL")
 
 
+print("preparing to load pdf files")
+pdf_loader = DirectoryLoader('../data/pdf/', loader_cls=PyPDFLoader)
+print("pdf file loading complete")
 
 print("preparing to load html files")
 html_loader = DirectoryLoader('../data/html/', loader_cls=UnstructuredHTMLLoader)
@@ -41,7 +46,7 @@ csv_loader2 = CSVLoader(file_path='../data/csv/ib.csv',csv_args={
 
 print("loaded csv files")
 
-data = [*html_loader.load(),*csv_loader1.load(),*csv_loader2.load()]
+data = [*html_loader.load(),*csv_loader1.load(),*csv_loader2.load(),*pdf_loader.load()]
 
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=2000,
