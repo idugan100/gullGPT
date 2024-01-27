@@ -6,8 +6,7 @@ from langchain_community.vectorstores.redis import Redis
 from langchain_community.document_loaders.csv_loader import CSVLoader
 import os
 from langchain_openai import AzureOpenAIEmbeddings
-
-
+from langchain_community.document_loaders import DirectoryLoader
 
 
 load_dotenv()
@@ -19,15 +18,26 @@ REDIS=os.getenv("REDIS_URL")
 
 
 print("preparing to load html files")
-html_loader = UnstructuredHTMLLoader("../data/Salisbury University - Wikipedia.html")
-
+# html_loader = UnstructuredHTMLLoader("../data/Salisbury University - Wikipedia.html")
+html_loader = DirectoryLoader('../data/html/', loader_cls=UnstructuredHTMLLoader)
 print("html loading complete")
 
 print("preparing to load csv files")
-csv_loader = CSVLoader(file_path='../data/classes.csv')
+# csv_loader = DirectoryLoader('../data/csv/', loader_cls=CSVLoader)
+csv_loader1 = CSVLoader(file_path='../data/csv/classes.csv',csv_args={
+    'delimiter': ',',
+    'quotechar': '"',
+    'fieldnames': ["description","courseNumber","departmentCode","courseTitle","avg_gpa","A_rate","B_rate","C_rate","D_rate","F_rate","W_rate","total_enrollment"]
+})
+csv_loader2 = CSVLoader(file_path='../data/csv/ap.csv',csv_args={
+    'delimiter': ',',
+    'quotechar': '"',
+    'fieldnames': ['AP course', 'minimum score on ap test', 'college credits awarded','coursed granted prior to fall 2024','courses grated after fall 2024']
+})
+
 print("loaded csv files")
 
-data = [*html_loader.load(),*csv_loader.load()]
+data = [*html_loader.load(),*csv_loader1.load(),*csv_loader2.load()]
 
 text_splitter = RecursiveCharacterTextSplitter(
     # Set a really small chunk size, just to show.

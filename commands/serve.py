@@ -29,13 +29,13 @@ new_rds = Redis.from_existing_index(
     schema="redis_schema.yaml",
 )
 
-retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 4})
+retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 6})
 
 # chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="chat")
 chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
 
 
-template = "Please resopond as a friendly and intelligent admissions advisor for university of maryland. you may use the below contex to answer the question if you don't have information based on the contex provided make an educated guess. tactfully redirect the conversation to the univeristy of maryland if the question was not about the university of maryland. Please answer in the same language the question was asked in. Context:{context} Question: {question}"
+template = "Please resopond as a friendly and intelligent admissions advisor for salisbury university. you may use the below contex to answer the question if you don't have information based on the contex provided make an educated guess. tactfully redirect the conversation to salisbury univeristy if the question was not about the university of maryland. Please answer in the same language the question was asked in. Context:{context} Question: {question}"
 
 chat_prompt = ChatPromptTemplate.from_messages([
     ("system", template),
