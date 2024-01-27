@@ -18,9 +18,7 @@ import os
 
 
 _TEMPLATE = """
-Please respond as a friendly and intelligent admissions advisor for salisbury university. 
-you may use the below contex to answer the question if you don't have information based on the contex provided make an educated guess. 
-tactfully redirect the conversation to salisbury univeristy if the question was not about salisbury univeristy. 
+Please respond as a friendly and intelligent admissions advisor for salisbury university. you may use the below context to answer the question if you don't have information based on the context provided make an educated guess. tactfully redirect the conversation to salisbury univeristy if the question was not about salisbury univeristy. 
 Please answer in the same language the question was asked in. Please consider the chat history when answering
 
 Chat History:
@@ -29,7 +27,8 @@ Follow Up Input: {question}
 Standalone question:"""
 CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(_TEMPLATE)
 
-ANSWER_TEMPLATE = """Answer the question based on the following context:
+ANSWER_TEMPLATE = """Please respond as a friendly and intelligent admissions advisor for salisbury university. you may use the below context to answer the question if you don't have information based on the context provided make an educated guess. tactfully redirect the conversation to salisbury univeristy if the question was not about salisbury univeristy. 
+Please answer in the same language the question was asked in.
 {context}
 
 Question: {question}
@@ -51,8 +50,8 @@ load_dotenv()
 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 REDIS_URL = os.getenv('REDIS_URL')
-os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
-os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
+# os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
+# os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
 # embeddings_model = AzureOpenAIEmbeddings(openai_api_version="2023-05-15",azure_deployment="embeddings")
 embeddings_model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
@@ -69,7 +68,7 @@ _inputs = RunnableMap(
         chat_history=lambda x: _format_chat_history(x["chat_history"])
     )
     | CONDENSE_QUESTION_PROMPT
-    | ChatOpenAI(temperature=0)
+    | ChatOpenAI(temperature=1)
     | StrOutputParser(),
 )
 _context = {

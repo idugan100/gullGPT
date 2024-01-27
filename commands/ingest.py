@@ -13,8 +13,8 @@ from langchain_community.document_loaders import PyPDFLoader
 
 load_dotenv()
 API_KEY=os.getenv('OPENAI_API_KEY')
-os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
-os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
+# os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
+# os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
 REDIS=os.getenv("REDIS_URL")
 
 
