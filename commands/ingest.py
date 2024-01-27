@@ -50,7 +50,26 @@ csv_loader4 = CSVLoader(file_path='../data/csv/professors.csv',csv_args={
     'fieldnames': ["firstName","lastName","avg_gpa","total_enrollment","Withdraw_rate","A_rate","B_rate","C_rate","D_rate","F_rate","courses_taught"
 ]
 })
-
+csv_loader5 = CSVLoader(file_path='../data/csv/costs.csv',csv_args={
+    'delimiter': ',',
+    'quotechar': '"',
+    'fieldnames': ['Fee Type', 'Instate', 'out of state']
+})
+csv_loader6 = CSVLoader(file_path='../data/csv/total_cost.csv',csv_args={
+    'delimiter': ',',
+    'quotechar': '"',
+    'fieldnames': ['Type of student', 'total costs']
+})
+csv_loader7 = CSVLoader(file_path='../data/csv/grad_costs.csv',csv_args={
+    'delimiter': ',',
+    'quotechar': '"',
+    'fieldnames': ['Per credit hour fee', 'maryland residents','non-residents','Non-Residents (Regional Hagerstown)']
+})
+csv_loader8 = CSVLoader(file_path='../data/csv/student_budget.csv',csv_args={
+    'delimiter': ',',
+    'quotechar': '"',
+    'fieldnames': ['Fee', 'maryland residents','non-residents','Non-Residents (Regional Hagerstown)']
+})
 print("loaded csv files")
 
 data = [
@@ -59,6 +78,10 @@ data = [
     *csv_loader2.load(),
     *csv_loader3.load(),
     *csv_loader4.load(),
+    *csv_loader5.load(),
+    *csv_loader6.load(),
+    *csv_loader7.load(),
+    *csv_loader8.load(),
     *pdf_loader.load()
 ]
 
