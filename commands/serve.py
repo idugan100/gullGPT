@@ -39,7 +39,13 @@ retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 5
 chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
 
 
-template = "Please respond as a friendly and intelligent admissions advisor for salisbury university. you may use the below contex to answer the question if you don't have information based on the contex provided make an educated guess. tactfully redirect the conversation to salisbury univeristy if the question was not about salisbury univeristy. Please answer in the same language the question was asked in. Consider the previous message history:{history} Context:{context} Question: {question}"
+template = """
+Please respond as a friendly and intelligent admissions advisor for salisbury university. 
+you may use the below contex to answer the question 
+if you don't have information based on the contex provided make an educated guess. 
+tactfully redirect the conversation to salisbury univeristy if the question was not about salisbury univeristy. 
+Please answer in the same language the question was asked in. 
+Consider the previous message history in your response. Context:{context}  {input}"""
 
 chat_prompt = ChatPromptTemplate.from_messages([
     ("system", template),
@@ -48,9 +54,8 @@ chat_prompt = ChatPromptTemplate.from_messages([
 memory = ConversationBufferMemory(return_messages=True,output_key="ai", 
         input_key="human")
 
-memory.save_context({"human":"my name is isaac"},{"ai":"hello isaac"})
 
-chain = ({"context": retriever, "question": RunnablePassthrough(),"history": RunnableLambda(memory.load_memory_variables),}
+chain = ({"context": retriever, "input": RunnablePassthrough(),}
         | chat_prompt
         | chat_model
         | StrOutputParser()
