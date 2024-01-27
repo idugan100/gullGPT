@@ -18,7 +18,6 @@ REDIS=os.getenv("REDIS_URL")
 
 
 print("preparing to load html files")
-# html_loader = UnstructuredHTMLLoader("../data/Salisbury University - Wikipedia.html")
 html_loader = DirectoryLoader('../data/html/', loader_cls=UnstructuredHTMLLoader)
 print("html loading complete")
 
@@ -34,13 +33,17 @@ csv_loader2 = CSVLoader(file_path='../data/csv/ap.csv',csv_args={
     'quotechar': '"',
     'fieldnames': ['AP course', 'minimum score on ap test', 'college credits awarded','coursed granted prior to fall 2024','courses grated after fall 2024']
 })
+csv_loader2 = CSVLoader(file_path='../data/csv/ib.csv',csv_args={
+    'delimiter': ',',
+    'quotechar': '"',
+    'fieldnames': ['International Baccalaureate (IB)', 'credits granted', 'courses granted']
+})
 
 print("loaded csv files")
 
 data = [*html_loader.load(),*csv_loader1.load(),*csv_loader2.load()]
 
 text_splitter = RecursiveCharacterTextSplitter(
-    # Set a really small chunk size, just to show.
     chunk_size=2000,
     chunk_overlap=30,
     length_function=len,
