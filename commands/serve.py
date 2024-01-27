@@ -12,6 +12,8 @@ from fastapi import FastAPI
 from langserve import add_routes
 from langchain_openai import AzureOpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 
@@ -58,6 +60,14 @@ app = FastAPI(
     title="LangChain Server",
     version="1.0",
     description="A simple api server using Langchain's Runnable interfaces",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 add_routes(

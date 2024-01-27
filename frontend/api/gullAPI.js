@@ -1,7 +1,7 @@
 //import from 
 messages=[]
-document.addEventListener("DOMContentLoaded", render_messages)
 function insertNewChat(event){
+
     event.preventDefault();
     let formData = new FormData(event.target);
   
@@ -14,9 +14,21 @@ function insertNewChat(event){
 }
 
 
-function chat_model(){
-    console.log("query llm")
-    messages.push({"ai":"ai response"})
+async function chat_model(){
+    url="http://127.0.0.1:8000/su/invoke"
+    const response = await fetch(url, {
+        method: 'POST', // HTTP POST method
+        headers: {
+          'Content-Type': 'application/json' // Specify content type as JSON
+        },
+        body: JSON.stringify({
+            "input": messages[messages.length -1].user,
+            "config": {},
+            "kwargs": {}
+          })
+    })
+    const responseData = await response.json(); // Parse the response body as JSON
+    messages.push({"ai":responseData.output})
     render_message(messages[messages.length -1])
 }
 
