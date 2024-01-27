@@ -54,13 +54,24 @@ html_urls=[
     {"url":"https://www.salisbury.edu/admissions/freshman-students/test-optional-policy.aspx","path":"../data/html/Test Optional Policy | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-portal.aspx","path":"../data/html/Transfer Portal | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-tuesday.aspx","path":"../data/html/Transfer Tuesdays | Salisbury University.html"},
-    {"url":"https://www.salisbury.edu/admissions/international-students/","path":"../data/html/International Admissions | Salisbury University.html"}
-    {"url":"https://www.salisbury.edu/admissions/international-students/academics.aspx","path":"../data/html/Four Schools & Two Colleges – A Million Opportunities | Salisbury University.html"}
-    {"url":"https://www.salisbury.edu/admissions/international-students/about-su.aspx","path":"../data/html/About Salisbury University | International Students.html"}
-    {"url":"https://www.salisbury.edu/administration/academic-affairs/center-for-international-education/english-language-institute/","path":"../data/html/English Language Institute | Salisbury University.html"}
-    {"url":"https://www.salisbury.edu/admissions/international-students/tuition-fees.aspx","path":"../data/html/International Admissions Tuition & Fees | Salisbury University.html"}
-    {"url":"https://www.salisbury.edu/admissions/international-students/immigration.aspx","path":"../data/html/Immigration | Salisbury University.html"}
-    {"url":"https://www.salisbury.edu/admissions/international-students/student-life.aspx","path":"../data/html/International Student Life | Salisbury University.html"}
+    {"url":"https://www.salisbury.edu/admissions/international-students/","path":"../data/html/International Admissions | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/international-students/academics.aspx","path":"../data/html/Four Schools & Two Colleges – A Million Opportunities | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/international-students/about-su.aspx","path":"../data/html/About Salisbury University | International Students.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/center-for-international-education/english-language-institute/","path":"../data/html/English Language Institute | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/international-students/tuition-fees.aspx","path":"../data/html/International Admissions Tuition & Fees | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/international-students/immigration.aspx","path":"../data/html/Immigration | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/international-students/student-life.aspx","path":"../data/html/International Student Life | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/", "path":"../data/html/Clark Honors College | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/about-the-honors-college.aspx", "path":"../data/html/Honors Programs | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/for-prospective-students.aspx", "path":"../data/html/Honors For Prospective Students | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/current-honor-students/", "path":"../data/html/Honors For Current Students | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/current-honor-students/apply-for-funding.aspx", "path":"../data/html/Honors Conferences and Research Funding | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/current-honor-students/study-abroad-opportunities.aspx", "path":"../data/html/Honors Study Abroad Opportunities | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/current-honor-students/honors-thesis-mentors.aspx", "path":"../data/html/Past Honors Thesis Mentors | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/honors-application.aspx", "path":"../data/html/Honors Application - Online | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/honors-housing.aspx", "path":"../data/html/Honors Housing | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/honor-student-association.aspx", "path":"../data/html/Honors Student Association | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/honors-student-ambassadors.aspx", "path":"../data/html/Honors Student Ambassadors | Salibsury University.html"}
     ]
 
 for html_url in html_urls:
