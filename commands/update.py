@@ -55,6 +55,12 @@ html_urls=[
     {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-portal.aspx","path":"../data/html/Transfer Portal | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-tuesday.aspx","path":"../data/html/Transfer Tuesdays | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/admissions/international-students/","path":"../data/html/International Admissions | Salisbury University.html"}
+    {"url":"https://www.salisbury.edu/admissions/international-students/academics.aspx","path":"../data/html/Four Schools & Two Colleges – A Million Opportunities | Salisbury University.html"}
+    {"url":"https://www.salisbury.edu/admissions/international-students/about-su.aspx","path":"../data/html/About Salisbury University | International Students.html"}
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/center-for-international-education/english-language-institute/","path":"../data/html/English Language Institute | Salisbury University.html"}
+    {"url":"https://www.salisbury.edu/admissions/international-students/tuition-fees.aspx","path":"../data/html/International Admissions Tuition & Fees | Salisbury University.html"}
+    {"url":"https://www.salisbury.edu/admissions/international-students/immigration.aspx","path":"../data/html/Immigration | Salisbury University.html"}
+    {"url":"https://www.salisbury.edu/admissions/international-students/student-life.aspx","path":"../data/html/International Student Life | Salisbury University.html"}
     ]
 
 for html_url in html_urls:
