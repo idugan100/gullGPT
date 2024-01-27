@@ -28,19 +28,21 @@
             
         </div>
         <!--Conversation-->
-        <div class="flex flex-col space-y-4 px-40 py-10 h-3/4" id="chatHolder">
-            <!--Chatbot messages-->
+        <div class="flex flex-col space-y-4 px-40 py-10 h-3/4 overflow-auto snap-y snap-mandatory">
+             <!--Chatbot messages-->
+             <div id="chatHolder"></div>
+             <p class="snap-end"></p>
         </div>
         <!--Text From User-->
         <form id="newChat" onsubmit="insertNewChat(event)">
-        <div class="border-[#FFC31F]/50 border-t-2 flex items-center py-4 px-2">
-            <div class="animate-bounce">
+        <div class="border-[#FFC31F]/50 border-t-2 flex items-center py-4 px-2 snap-end">
+            <!--div class="animate-bounce"-->
                 <input type="text" id="message" name="message" placeholder="type here..." class="flex-l rounded-lg px-12 py-2 border-2 bg-gray-300 hover:border-indigo-300 ml-2 shadow-[#FFC31F]/25 shadow-lg required"/>
-                <button  type="submit" class="relative right-24">
-                <span class="animate-ping  incline-flex h-full w-full rounded-full bg-sky-400 opacity-75 hover:animate-none hover:opacity-0"></span>
+                <button  type="submit" class="right-24">
+                <span class="animate-ping incline-flex h-full w-full rounded-full bg-sky-400 opacity-75 hover:animate-none hover:opacity-0"></span>
                     SEND
                 </button>
-            </div>
+            <!--/div-->
         </div>
         </form>
     </div>
