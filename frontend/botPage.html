@@ -4,43 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./api/gullAPI.js"></script>
 </head>
 <body>
 <!--Chatbot tailwind template-->
-<div class="h-screen">
+<div class="h-screen font-['Proxima Nova'] text-2xl">
     <!--Chatbot -->
-    <div class="bg-gray-700 border border-red-500 h-screen">
+    <div class="bg-[#3C1010] border border-red-500 h-screen">
         <!--Header For Chatbot-->
-        <div class="border-gray-800 border-b-2 px-2 py-4">
+        <div class="border-[#FFC31F]/50 border-b-2 px-2 py-4">
             <div class="inline-flex items-center">
-                <img src="assets/suLogo.jpg" alt="logo" class="w-8"/>
-                <span class="ml-8 text-white">gullGPT</span>
+                <a href="https://www.salisbury.edu/">
+                <img src="https://pbs.twimg.com/profile_images/300371774/SU_twitter_400x400.jpg" alt="SUlogo" class="w-16 h-16 hover:animate-pulse"/>
+                </a>
+                <span class="ml-8 text-white">GullGPT</span>
+                <a href="https://hoyahacks.georgetown.domains/">
+                <img src="https://d112y698adiu2z.cloudfront.net/photos/production/challenge_photos/002/703/676/datas/full_width.png" alt="HOYAlogo" class="w-54 h-16 ml-8 hover:animate-pulse"/>
+                </a>
             </div>
             
         </div>
-        <!--Body-->
+        <!--Conversation-->
         <div class="flex flex-col space-y-4 px-40 py-10 h-3/4">
             <!--Chatbot message-->
                 <div class="flex flex-col items-start">
-                    <span class="bg-gray-50 px-2 py-2 rounded-b-xl rounded-tl-xl mb-2 mt-2 w-1/3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quae maiores accusamus, quis earum tempore nam. Et atque doloribus fugiat pariatur unde accusantium, natus placeat praesentium ipsa sequi deleniti perspiciatis.</span>
+                    <span class="bg-[#8A0000] px-2 py-2 rounded-b-xl rounded-tl-xl mb-2 mt-2 w-1/3 text-white shadow-[#FFC31F]/25 shadow-md">
+                        Chatbot Greeting Message
+                    </span>
                 </div>
-                <!--User Message-->
+                <!--Sent User Message-->
                 <div class="flex flex-col items-end">
-                    <span class="bg-gray-50 px-2 py-2 mt-2 mb-2 rounded-b-xl rounded-tr-xl w-1/3">Good Place for Coffee</span>
+                    <span class="bg-gray-300 px-2 py-2 mt-2 mb-2 rounded-b-xl rounded-tr-xl w-1/3 shadow-[#FFC31F]/25 shadow-lg loading:animate-pulse">
+                        User Question After SEND
+                    </span>
+                </div>
+                <div class="flex flex-col items-start">
+                    <span class="bg-[#8A0000] px-2 py-2 rounded-b-xl rounded-tl-xl mb-2 mt-2 w-1/3 text-white shadow-[#FFC31F]/25 shadow-md loading:animate-bounce">
+                        Chatbot Response Message
+                    </span>
                 </div>
         </div>
-        <!--Footer-->
-        <div class="border-gray-800 border-t-2 flex items-center py-4 px-2">
+        <!--Text From User-->
+        <form>
+        <div class="border-[#FFC31F]/50 border-t-2 flex items-center py-4 px-2">
             <div class="animate-bounce">
-            <input type="text" placeholder="type here..." class="flex-l rounded-lg px-4 py-2 border-2 hover:border-indigo-300 mr-2"/>
-            <button type="submit" class="relative right-16">
+                <input type="text" id="message" placeholder="type here..." class="flex-l rounded-lg px-12 py-2 border-2 bg-gray-300 hover:border-indigo-300 ml-2 shadow-[#FFC31F]/25 shadow-lg required"/>
+                <button onClick="sendMessage(message)" type="submit" class="relative right-24">
                 <span class="animate-ping absolute incline-flex h-full w-full rounded-full bg-sky-400 opacity-75 hover:animate-none hover:opacity-0"></span>
-                SEND
-            </button>
+                    SEND
+                </button>
             </div>
         </div>
+        </form>
     </div>
 </div>
-
-
 </html>
