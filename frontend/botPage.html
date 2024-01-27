@@ -34,15 +34,18 @@
              <p class="snap-end"></p>
         </div>
         <!--Text From User-->
-        <form id="newChat" onsubmit="insertNewChat(event)">
-        <div class="border-[#FFC31F]/50 border-t-2 flex items-center py-4 px-2 snap-end">
-                <input type="text" id="message" name="message" placeholder="type here..." class="flex-l rounded-tl rounded-bl px-12 py-2 bg-gray-300 ml-2 shadow-[#FFC31F]/25 shadow-lg required"/>
-                <button  type="submit" class="right-24 rounded-tr rounded-br px-12 py-2 bg-gray-400 hover:bg-gray-300">
-                <span class="animate-ping incline-flex h-full w-full rounded-full bg-sky-400 opacity-75 hover:animate-none hover:opacity-0"></span>
-                    SEND
-                </button>
+        <div class="flex justify-between">
+            <form id="newChat" onsubmit="insertNewChat(event)">
+            <div class="border-[#FFC31F]/50 border-t-2 flex items-center py-4 px-2 snap-end">
+                    <input type="text" id="message" name="message" placeholder="type here..." class="flex-l rounded-tl rounded-bl px-12 py-2 bg-gray-300 ml-2 shadow-[#FFC31F]/25 shadow-lg required"/>
+                    <button  type="submit" class="right-24 rounded-tr rounded-br px-12 py-2 bg-gray-400 hover:bg-gray-300">
+                    <span class="animate-ping incline-flex h-full w-full rounded-full bg-sky-400 opacity-75 hover:animate-none hover:opacity-0"></span>
+                        SEND
+                    </button>
+            </div>
+            </form>
+            <button class="bg-white mx-12" onclick="clear_conversation()">Clear Conversation</button>
         </div>
-        </form>
     </div>
 </div>
 </html>

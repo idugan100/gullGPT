@@ -51,3 +51,9 @@ function render_message(element){
         chatHolder.appendChild(div);
         div.appendChild(span);
 }
+
+function clear_conversation(){
+    messages=[]
+    let chatHolder = document.getElementById("chatHolder")
+    chatHolder.innerHTML=""
+}
