@@ -3,21 +3,31 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from dotenv import load_dotenv
 from langchain_community.vectorstores.redis import Redis
+from langchain_community.document_loaders.csv_loader import CSVLoader
 import os
+from langchain_openai import AzureOpenAIEmbeddings
+
+
 
 
 load_dotenv()
 API_KEY=os.getenv('OPENAI_API_KEY')
+os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
+os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
 REDIS=os.getenv("REDIS_URL")
 
 
 
 print("preparing to load html files")
-loader = UnstructuredHTMLLoader("../data/Salisbury University - Wikipedia.html")
+html_loader = UnstructuredHTMLLoader("../data/Salisbury University - Wikipedia.html")
 
-data=loader.load()
 print("html loading complete")
 
+print("preparing to load csv files")
+csv_loader = CSVLoader(file_path='../data/classes.csv')
+print("loaded csv files")
+
+data = [*html_loader.load(),*csv_loader.load()]
 
 text_splitter = RecursiveCharacterTextSplitter(
     # Set a really small chunk size, just to show.
@@ -31,6 +41,10 @@ documents=text_splitter.split_documents(data)
 print("documents have finished being split")
 
 embeddings_model = OpenAIEmbeddings(openai_api_key=API_KEY)
+# embeddings_model = AzureOpenAIEmbeddings(
+#     azure_deployment="embeddings",
+#     openai_api_version="2023-05-15",
+# )
 print("embeddings fetched")
 Redis.drop_index(
     index_name="su_data",
