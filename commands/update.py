@@ -71,8 +71,21 @@ html_urls=[
     {"url":"https://www.salisbury.edu/academic-offices/honors/honors-application.aspx", "path":"../data/html/Honors Application - Online | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/academic-offices/honors/honors-housing.aspx", "path":"../data/html/Honors Housing | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/academic-offices/honors/honor-student-association.aspx", "path":"../data/html/Honors Student Association | Salisbury University.html"},
-    {"url":"https://www.salisbury.edu/academic-offices/honors/honors-student-ambassadors.aspx", "path":"../data/html/Honors Student Ambassadors | Salibsury University.html"}
+    {"url":"https://www.salisbury.edu/academic-offices/honors/honors-student-ambassadors.aspx", "path":"../data/html/Honors Student Ambassadors | Salibsury University.html"},
+    {"url":"https://www.salisbury.edu/explore-academics/study-abroad.aspx", "path":"../data/html/Study Abroad | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/", "path":"../data/html/Office of Financial Aid | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/fafsa-major-changes.aspx", "path":"../data/html/24-25 Major FAFSA Changes | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/how-to-apply.aspx", "path":"../data/html/How Do I Apply for Financial Aid? | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/types-of-aid/", "path":"../data/html/Types of Aid | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/types-of-aid/su-admission-scholarships.aspx", "path":"../data/html/SU Admission Scholarships | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/types-of-aid/grants.aspx", "path":"../data/html/Grants | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/types-of-aid/state-aid/", "path":"../data/html/State Aid | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/types-of-aid/loan/", "path":"../data/html/Loans | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/types-of-aid/federal-work-study.aspx", "path":"../data/html/Federal Work-Study | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/registrar/veterans/", "path":"../data/html/Veteran Services | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/cost-of-attendance/", "path":"../data/html/Cost of Attendance | Salisbury University.html"}
     ]
+    #{"url":"", "path":"../data/html/| Salisbury University.html"}
 
 for html_url in html_urls:
     download_html(html_url["url"],html_url["path"])
