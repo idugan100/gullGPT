@@ -6,26 +6,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <!--h1 class="text-3xl font-bold underline">
-    <h1 class="w-96 h-50 bg-white shadow rounded">
-        Hello world!
-        <h2 class="w-52 h 20 bg-grey shadow rounded">
-            GG!
-        </h2>
-
-    </h1>
-</body>
-<div class="relative bg-white px-6 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
-    <p>THIS IS DIV!</p>
-    <div class="bg-red shadow rounded">
-        <p>This is Div Two!</p>
-    </div>
-</div-->
-
 <!--Chatbot tailwind template-->
-<div class="w-full m-10 p-10">
+<div class="h-screen">
     <!--Chatbot -->
-    <div class="bg-gray-700 shadow-lg rounded-lg max-w-md">
+    <div class="bg-gray-700 border border-red-500 h-screen">
         <!--Header For Chatbot-->
         <div class="border-gray-800 border-b-2 px-2 py-4">
             <div class="inline-flex items-center">
@@ -35,21 +19,21 @@
             
         </div>
         <!--Body-->
-        <div class="h-80 flex flex-col space-y-4 max-w-md px-2 mb-2 mt-2">
+        <div class="flex flex-col space-y-4 px-40 py-10 h-3/4">
             <!--Chatbot message-->
-            <div class="flex flex-col items-start">
-                <span class="bg-gray-50 px-2 py-2 rounded-b-xl rounded-tl-xl mb-2 mt-2">How can I Help?</span>
-            </div>
-            <!--User Message-->
-            <div class="flex flex-col items-end">
-                <span class="bg-gray-50 px-2 py-2 mt-2 mb-2 rounded-b-xl rounded-tr-xl">Good Place for Coffee</span>
-            </div>
+                <div class="flex flex-col items-start">
+                    <span class="bg-gray-50 px-2 py-2 rounded-b-xl rounded-tl-xl mb-2 mt-2 w-1/3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quae maiores accusamus, quis earum tempore nam. Et atque doloribus fugiat pariatur unde accusantium, natus placeat praesentium ipsa sequi deleniti perspiciatis.</span>
+                </div>
+                <!--User Message-->
+                <div class="flex flex-col items-end">
+                    <span class="bg-gray-50 px-2 py-2 mt-2 mb-2 rounded-b-xl rounded-tr-xl w-1/3">Good Place for Coffee</span>
+                </div>
         </div>
         <!--Footer-->
         <div class="border-gray-800 border-t-2 flex items-center py-4 px-2">
             <div class="animate-bounce">
             <input type="text" placeholder="type here..." class="flex-l rounded-lg px-4 py-2 border-2 hover:border-indigo-300 mr-2"/>
-            <button type="submitt" class="relative right-16">
+            <button type="submit" class="relative right-16">
                 <span class="animate-ping absolute incline-flex h-full w-full rounded-full bg-sky-400 opacity-75 hover:animate-none hover:opacity-0"></span>
                 SEND
             </button>
