@@ -45,8 +45,8 @@ function render_message(element){
         }
         else{
             span.textContent=element.ai
-            span.classList.add( "px-2", "py-2", "mt-2", "mb-2", "rounded-b-xl", "rounded-tr-xl", "w-1/3",  "loading:animate-pulse");
-            div.classList.add("bg-[#8A0000]", "px-2", "py-2", "rounded-b-xl", "rounded-tl-xl", "mb-2", "mt-2", "w-1/3", "text-white", "shadow-[#FFC31F]/25","shadow-md", "loading:animate-bounce")
+            span.classList.add( "px-2", "py-2", "mt-2", "mb-2", "rounded-b-xl", "rounded-tr-xl", "w-1/2",  "loading:animate-pulse");
+            div.classList.add("bg-[#8A0000]", "px-2", "py-2", "rounded-b-xl", "rounded-tl-xl", "mb-2", "mt-2", "w-1/2", "text-white", "shadow-[#FFC31F]/25","shadow-md", "loading:animate-bounce")
         }
         chatHolder.appendChild(div);
         div.appendChild(span);
