@@ -18,7 +18,40 @@ def download_html(url, path):
 
 html_urls=[
     {"url":"https://www.salisbury.edu/admissions/transfer-students/academic-requirements.aspx", "path":"../data/html/Academic Requirements For Transfer Applicants | Salisbury University.html"},
-    {"url":"https://www.salisbury.edu/admissions/transfer-students/admissions-requirements.aspx","path":"../data/html/Admissions Requirements For Transfer Applicants | Salisbury University.html"}
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/admissions-requirements.aspx","path":"../data/html/Admissions Requirements For Transfer Applicants | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/admissions-team.aspx","path":"../data/html/Admissions Team | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/liberal-arts/for-students/student-grants.aspx","path":"../data/html/Announcement of Fulton Student Research Grants | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/ourca/conferences/susrc/","path":"../data/html/Annual Student Research Conference (SUSRC) | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/freshman-students/application-evaluation-criteria.aspx","path":"../data/html/Application Evaluation Criteria | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/freshman-students/","path":"../data/html/Applying for Freshman Students | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/","path":"../data/html/Applying for Transfer Students | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/articulation-agreements.aspx","path":"../data/html/Articulation Agreements | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/freshman-students/credit-by-exam.aspx","path":"../data/html/Credit by Exam (AP & IB) | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/credit-policies-artsys.aspx","path":"../data/html/Credit Policies:ARTSYS | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/enrollment-management/","path":"../data/html/Enrollment Management | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-faqs.aspx","path":"../data/html/FAQs for Transfer Applicants | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/freshman-students/freshman-faqs.aspx","path":"../data/html/Freshman Admissions FAQs | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/freshman-students/freshman-application.aspx","path":"../data/html/Freshman Application Process | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/graduate-admissions.aspx","path":"../data/html/Graduate Admissions | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/assistantships.aspx","path":"../data/html/Graduate Assistantships | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/graduate-council.aspx","path":"../data/html/Graduate Council | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/graduate-academic-policies-committee.aspx","path":"../data/html/Graduate Council Academic Policies Committee | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/graduate-curriculum-committee.aspx","path":"../data/html/Graduate Curriculum Committee | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/faculty.aspx","path":"../data/html/Graduate Faculty | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/rap.aspx","path":"../data/html/Graduate Research & Presentation Grant (RAP) | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/research.aspx","path":"../data/html/Graduate Research | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/scholarship.aspx","path":"../data/html/Graduate Scholarships | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/campus-governance/graduate-student-council/","path":"../data/html/Graduate Student Council | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-housing.aspx","path":"../data/html/Housing for Transfer Students | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/interdisciplinary-graduate-courses.aspx","path":"../data/html/Interdisciplinary Graduate Courses | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/staff.aspx","path":"../data/html/Office of Graduate Studies Staff | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/ptk-scholarship.aspx","path":"../data/html/Phi Theta Kappa (PTK) | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/sponsored-programs/pre-award/funding.aspx","path":"../data/html/Pre-Award | Find Funding | Salisbury University.html"},
+    {"url":"https://en.wikipedia.org/wiki/Salisbury_University","path":"../data/html/Salisbury University - Wikipedia.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/scholarly-project.aspx","path":"../data/html/Scholarly Project Information | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/freshman-students/test-optional-policy.aspx","path":"../data/html/Test Optional Policy | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-portal.aspx","path":"../data/html/Transfer Portal | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-tuesday.aspx","path":"../data/html/Transfer Tuesdays | Salisbury University.html"}
     ]
 
 for html_url in html_urls:
