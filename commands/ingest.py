@@ -8,7 +8,8 @@ import os
 from langchain_openai import AzureOpenAIEmbeddings
 from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.document_loaders import PyPDFLoader
-
+from datetime import datetime
+startTime = datetime.now()
 
 
 load_dotenv()
@@ -94,7 +95,7 @@ print("new data loaded to redis")
 rds.write_schema("redis_schema.yaml")
 print("redis schema written")
 print("data ingestion completed")
-
+print(datetime.now() - startTime)
 
 
 

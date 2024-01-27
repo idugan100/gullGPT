@@ -1,5 +1,7 @@
 import requests
 import os
+from datetime import datetime
+startTime = datetime.now()
 
 def download_html(url, path):
     response = requests.get(url)
@@ -7,7 +9,7 @@ def download_html(url, path):
     # Check if the request was successful
     if response.status_code == 200:
         os.remove(path)
-        print("removed")
+        print("removed old file")
 
         # Write the HTML content to a file
         with open(path, 'w', encoding='utf-8') as f:
@@ -86,3 +88,5 @@ pdf_urls=[
 
 for pdf_url in pdf_urls:
     download_pdf(pdf_url["url"],pdf_url["path"])
+
+print(datetime.now() - startTime)
