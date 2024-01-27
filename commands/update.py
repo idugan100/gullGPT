@@ -51,7 +51,8 @@ html_urls=[
     {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/scholarly-project.aspx","path":"../data/html/Scholarly Project Information | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/admissions/freshman-students/test-optional-policy.aspx","path":"../data/html/Test Optional Policy | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-portal.aspx","path":"../data/html/Transfer Portal | Salisbury University.html"},
-    {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-tuesday.aspx","path":"../data/html/Transfer Tuesdays | Salisbury University.html"}
+    {"url":"https://www.salisbury.edu/admissions/transfer-students/transfer-tuesday.aspx","path":"../data/html/Transfer Tuesdays | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/international-students/","path":"../data/html/International Admissions | Salisbury University.html"}
     ]
 
 for html_url in html_urls:
