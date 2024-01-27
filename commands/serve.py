@@ -40,8 +40,8 @@ Please respond as a friendly and intelligent admissions advisor for salisbury un
 you may use the below contex to answer the question 
 if you don't have information based on the contex provided make an educated guess. 
 tactfully redirect the conversation to salisbury univeristy if the question was not about salisbury univeristy. 
-Please answer in the same language the question was asked in. 
-Consider the previous message history in your response. Context:{context}  {input}"""
+Please answer in the same language the question was asked in. Do not use the phrase: salisbury admissions counselor  in your repsonse
+Consider the previous message history or summary of history in your response. Context:{context}  {input}"""
 
 chat_prompt = ChatPromptTemplate.from_messages([
     ("system", template),
