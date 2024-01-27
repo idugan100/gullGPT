@@ -19,15 +19,13 @@ embeddings_model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 new_rds = Redis.from_existing_index(
     embeddings_model,
     index_name="su_data",
-    redis_url="REDIS_URL",
+    redis_url=REDIS_URL,
     schema="redis_schema.yaml",
 )
 
-retriever = Redis.as_retriever(search_type="similarity", search_kwargs={"k": 4})
+retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 4})
 
-llm = OpenAI()
-chat_model = ChatOpenAI()
-llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
+chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
 
 template = "Please resopond as a friendly and intelligent admissions advisor for university of maryland. you may use the below contex to answer the question if you don't have information based on the contex provided make an educated guess. tactfully redirect the conversation to the univeristy of maryland if the question was not about the university of maryland. Please answer in the same language the question was asked in. Context:{context} Question: {question}"
 
@@ -37,7 +35,7 @@ chat_prompt = ChatPromptTemplate.from_messages([
 
 chain = ({"context": retriever, "question": RunnablePassthrough()}
         | chat_prompt
-        | llm
+        | chat_model
         | StrOutputParser()
         )
 
@@ -49,21 +47,10 @@ app = FastAPI(
 
 add_routes(
     app,
-    ChatOpenAI(),
-    path="/docs",
+    chain,
+    path="/su",
 )
 
-add_routes(
-    app,
-    ChatOpenAI(),
-    path="/gullGPT/playground",
-)
-
-add_routes(
-    app,
-    chat_prompt | chat_model,
-    path="/test",
-)
 
 if __name__ == "__main__":
     import uvicorn
