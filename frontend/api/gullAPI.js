@@ -63,6 +63,8 @@ function loading_state(){
     inputBar.classList.add("animate-bounce")
     input.disabled=true
     input.placeholder="Loading response ..."
+    let clear = document.getElementById("clear")
+    clear.disabled=true;
 }
 
 function end_loading_state(){
@@ -71,4 +73,6 @@ function end_loading_state(){
     inputBar.classList.remove("animate-bounce")
     input.disabled=false
     input.placeholder="Type here ..."
+    let clear = document.getElementById("clear")
+    clear.disabled=false;
 }
