@@ -63,7 +63,7 @@ data = [
 
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=2000,
-    chunk_overlap=30,
+    chunk_overlap=200,
     length_function=len,
     is_separator_regex=False,
 )

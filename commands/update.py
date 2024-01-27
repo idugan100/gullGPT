@@ -56,3 +56,32 @@ html_urls=[
 
 for html_url in html_urls:
     download_html(html_url["url"],html_url["path"])
+
+def download_pdf(url, path):
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        os.remove(path)
+        print("removed old file")
+
+        with open(path, 'wb') as pdf_file:
+            pdf_file.write(response.content)
+        print(f"PDF downloaded successfully and saved to: {path}")
+    else:
+        print(f"Failed to download PDF. Status code: {response.status_code}")
+        
+pdf_urls=[
+    {"url":"https://www.salisbury.edu/administration/administration-and-finance-offices/financial-services/accounts-receivable-cashiers-office/_files/course-fee-schedule-fy24.pdf","path":"../data/pdf/course-fee-Schedule-fy24.pdf"},
+    {"url":"https://www.salisbury.edu/administration//academic-affairs/graduate-studies-and-research/_files/DeferralofApplication2015TEST.pdf","path":"../data/pdf/DeferralofApplication2015TEST.pdf"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/_files/GA-Credit-Waiver-9-25-14.pdf","path":"../data/pdf/GA-Credit-Waiver-9-25-14.pdf"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/_files/graduate-student-handbook/2023-2024/Graduate-Student-Handbook-2023-24.pdf","path":"../data/pdf/Graduate-Student-Handbook-2023-24.pdf"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/_files/Request-to-Transfer-to-Another-Program.pdf","path":"../data/pdf/Request-to-Transfer-to-Another-Program.pdf"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/_files/Scholarly-Project-Completion-defense-Submission-Form.pdf","path":"../data/pdf/Scholarly-Project-completion-defense-Submission-Form.pdf"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/_files/Scholarly-Project-Manual.pdf","path":"../data/pdf/Scholarly-Project-manual.pdf"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/_files/seven-year-waiver-2021.pdf","path":"../data/pdf/seven-year-waiver-2021.pdf"},
+    {"url":"https://www.salisbury.edu/administration/administration-and-finance-offices/financial-services/accounts-receivable-cashiers-office/_files/tuition-fee-schedule-2023-2024.pdf","path":"../data/pdf/tuition-fee-schedule-2023-2024.pdf"}
+
+]
+
+for pdf_url in pdf_urls:
+    download_pdf(pdf_url["url"],pdf_url["path"])

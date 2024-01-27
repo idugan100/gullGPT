@@ -5,17 +5,13 @@ from langchain_community.vectorstores.redis import Redis
 from langchain_openai import ChatOpenAI
 from langchain_openai import AzureChatOpenAI
 from langchain.prompts.chat import ChatPromptTemplate
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+from langchain_core.runnables import RunnablePassthrough
 from fastapi import FastAPI
 from langserve import add_routes
 from langchain_openai import AzureOpenAIEmbeddings
-from langchain.memory import ConversationBufferMemory
 from fastapi.middleware.cors import CORSMiddleware
-
-
-
 
 load_dotenv()
 
@@ -50,10 +46,6 @@ Consider the previous message history in your response. Context:{context}  {inpu
 chat_prompt = ChatPromptTemplate.from_messages([
     ("system", template),
 ])
-
-memory = ConversationBufferMemory(return_messages=True,output_key="ai", 
-        input_key="human")
-
 
 chain = ({"context": retriever, "input": RunnablePassthrough(),}
         | chat_prompt
