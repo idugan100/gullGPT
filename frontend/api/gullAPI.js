@@ -12,6 +12,22 @@ function insertNewChat(event){
 }
 
 async function chat_model(){
+    var string = "History: ";
+    for (let i = 0; i < messages.length - 2; i++) {
+        if (i % 2 == 0) {
+            // If the message is from the user
+            string += "user - " + messages[i].user + "\n"; // Add the user message
+        }
+        if (i % 2 == 1) {
+            // If the message is from the counselor
+            string += "salisbury admissions counselor - " + messages[i].ai + "\n"; // Add the counselor message
+        }
+    }
+    // Add the last message (assuming it's a user question)
+    string += "Question: " + messages[messages.length - 1].user + "\n";
+    
+    console.log(string);
+    
     url="http://127.0.0.1:8000/su/invoke"
     const response = await fetch(url, {
         method: 'POST', // HTTP POST method
@@ -19,7 +35,7 @@ async function chat_model(){
           'Content-Type': 'application/json' // Specify content type as JSON
         },
         body: JSON.stringify({
-            "input": messages[messages.length -1].user,
+            "input": string,
             "config": {},
             "kwargs": {}
           })
