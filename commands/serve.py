@@ -3,14 +3,16 @@ from dotenv import load_dotenv
 import os
 from langchain_community.vectorstores.redis import Redis
 from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAI
 from langchain_openai import AzureChatOpenAI
 from langchain.prompts.chat import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnablePassthrough
+from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from fastapi import FastAPI
 from langserve import add_routes
 from langchain_openai import AzureOpenAIEmbeddings
+from langchain.memory import ConversationBufferMemory
+
 
 
 load_dotenv()
@@ -35,13 +37,18 @@ retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 6
 chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
 
 
-template = "Please resopond as a friendly and intelligent admissions advisor for salisbury university. you may use the below contex to answer the question if you don't have information based on the contex provided make an educated guess. tactfully redirect the conversation to salisbury univeristy if the question was not about the university of maryland. Please answer in the same language the question was asked in. Context:{context} Question: {question}"
+template = "Please resopond as a friendly and intelligent admissions advisor for salisbury university. you may use the below contex to answer the question if you don't have information based on the contex provided make an educated guess. tactfully redirect the conversation to salisbury univeristy if the question was not about the university of maryland. Please answer in the same language the question was asked in. Consider the pervious message history:{history} Context:{context} Question: {question}"
 
 chat_prompt = ChatPromptTemplate.from_messages([
     ("system", template),
 ])
 
-chain = ({"context": retriever, "question": RunnablePassthrough()}
+memory = ConversationBufferMemory(return_messages=True,output_key="ai", 
+        input_key="human")
+
+memory.save_context({"human":"my name is isaac"},{"ai":"hello isaac"})
+
+chain = ({"context": retriever, "question": RunnablePassthrough(),"history": RunnableLambda(memory.load_memory_variables),}
         | chat_prompt
         | chat_model
         | StrOutputParser()
