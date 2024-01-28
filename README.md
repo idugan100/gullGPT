@@ -8,10 +8,10 @@
 - Salisbury University
 ## Live Link
 [gullgpt.study](http://gullgpt.study)
-## Diagram of Product Architecture
+## [Diagram of Product Architecture](./documentation/documentation.md)
 ![alt text](./documentation/architecture.png)
 ## Cost
-- $5 per month redis cloud instance to store vector embeddings
+- $5 per month Redis cloud instance to store vector embeddings
     - ![alt text](./documentation/redis_cost.png)
 - $5 per month linux vm, for document storage and running ETL scripts and langchain hosting
     - ![alt text](./documentation/vm_cost.png)
