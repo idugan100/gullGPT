@@ -1,7 +1,4 @@
 # Project Outline
-
-[github link](https://github.com/idugan100/gullGPT)
-
 ## TEAM#58 (gullGPT)
 
 - Brian Bowers, Salsibury University, bbowers4@gulls.salibsury.edu
