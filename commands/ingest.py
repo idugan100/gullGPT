@@ -70,6 +70,11 @@ csv_loader8 = CSVLoader(file_path='../data/csv/student_budget.csv',csv_args={
     'quotechar': '"',
     'fieldnames': ['Fee', 'maryland residents','non-residents','Non-Residents (Regional Hagerstown)']
 })
+csv_loader9 = CSVLoader(file_path='../data/csv/gened.csv',csv_args={
+    'delimiter': ',',
+    'quotechar': '"',
+    'fieldnames': ['Gened Group', 'Category','Requirements']
+})
 print("loaded csv files")
 
 data = [
