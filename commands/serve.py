@@ -19,8 +19,8 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 REDIS_URL = os.getenv('REDIS_URL')
 os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
 os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
-# embeddings_model = AzureOpenAIEmbeddings(openai_api_version="2023-05-15",azure_deployment="embeddings")
-embeddings_model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+embeddings_model = AzureOpenAIEmbeddings(openai_api_version="2023-05-15",azure_deployment="embeddings")
+# embeddings_model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
 new_rds = Redis.from_existing_index(
     embeddings_model,
@@ -31,8 +31,8 @@ new_rds = Redis.from_existing_index(
 
 retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
-# chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="chat")
-chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
+chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="chat")
+# chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
 
 
 template = """

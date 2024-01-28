@@ -100,11 +100,11 @@ print("beginning document splitting")
 documents=text_splitter.split_documents(data)
 print("documents have finished being split")
 
-embeddings_model = OpenAIEmbeddings(openai_api_key=API_KEY)
-# embeddings_model = AzureOpenAIEmbeddings(
-#     azure_deployment="embeddings",
-#     openai_api_version="2023-05-15",
-# )
+# embeddings_model = OpenAIEmbeddings(openai_api_key=API_KEY)
+embeddings_model = AzureOpenAIEmbeddings(
+    azure_deployment="embeddings",
+    openai_api_version="2023-05-15",
+)
 print("embeddings fetched")
 Redis.drop_index(
     index_name="su_data",
