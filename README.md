@@ -6,8 +6,23 @@
 - Mikey Montebell, Salisbury Univeristy, jamesmontebell4@gmail.com 
 ## Name of Institution Solution Serves
 - Salisbury University
-## PUBLIC URL GOES HERE!!!!!!!!!!!!!!!
 ## Diagram of Product Architecture
-- Isaac will do this
+![alt text](./documentation/architecture.png)
+## Cost
+- $5 per month redis cloud instance to store vector embeddings
+    - ![alt text](./documentation/redis_cost.png)
+- $5 per month linux vm, for document storage and running ETL scripts and langchain hosting
+    - ![alt text](./documentation/vm_cost.png)
+- $3.75 in openAI credits over the weekend
+    - ![alt text](./documentation/openAI_cost.png)
 ## DEMO VIDEO
 - Isaac might do this?
+## Tech
+- Python
+- Redis
+- Langchain
+- Langserve
+- Javascript
+- Tailwind CSS
+- HTML
+- OpenAI
