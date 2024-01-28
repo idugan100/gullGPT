@@ -1,4 +1,69 @@
-messages = [];
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#3C1010]">
+<!--Chatbot tailwind template-->
+<div class="h-screen font-['Proxima Nova'] text-2xl">
+    <!--Chatbot -->
+    <div class="bg-[#3C1010]  h-screen">
+        <!--Header For Chatbot-->
+        <div class="border-[#FFC31F]/50 border-b-2 pl-8 pr-8 py-4 h-30 shadow-2xl">
+            <div class="flex">
+                <a href="https://www.salisbury.edu/">
+                    <img src="https://pbs.twimg.com/profile_images/300371774/SU_twitter_400x400.jpg" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/>
+                </a>
+                <div class="ml-8 col-span-10 text-white text-3xl pt-3 font-bold">GullGPT</div>
+                <a href="https://hoyahacks.georgetown.domains/" class="ml-auto">
+                    <img src="https://d112y698adiu2z.cloudfront.net/photos/production/challenge_photos/002/703/676/datas/full_width.png" alt="HOYAlogo" class="w-54 h-16 mr-8 hover:animate-pulse "/>
+                </a>
+            </div>
+        </div>
+        <!--Conversation-->
+        <div class="flex flex-col space-y-4 px-36 py-10 h-3/4 overflow-auto snap-y snap-mandatory ">
+             <!--Chatbot messages-->
+             <div id="chatHolder"></div>
+             <p class=""></p>
+        </div>
+
+        <div class="flex justify-between border-[#FFC31F]/50 border-t-2 flex items-center py-4 px-2">
+            <div class="pl-12 flex w-full">
+                <form id="newChat" onsubmit="insertNewChat(event)">
+                    <div class="">
+                        <div id="inputBar" class="relative">
+                            <input type="text" id="message" name="message" placeholder="Ask me something..." class=" rounded-xl   bg-gray-300 p-2 outline-none w-[600px]" required/>
+                            <button type="submit" class=" py-2 bg-[#9D6A1D] p-2 rounded-r-xl absolute left-[590px] text-lg h-12 w-20">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <button id="clear" class="rounded px-12 py-2 bg-red-300 text-lg mx-12 ml-auto" onclick="clear_conversation()">Clear Conversation</button>
+            </div>
+
+        </div>
+        <!--Text From User-->
+        <!-- <div class="flex justify-between border-[#FFC31F]/50 border-t-2 flex items-center py-4 px-2">
+            <form id="newChat" onsubmit="insertNewChat(event)">
+                <div class="snap-end">
+                    <div id="inputBar">
+                        <input type="text" id="message" name="message" placeholder="type here..." class="flex-l rounded-tl rounded-bl px-12 py-2 bg-gray-300 ml-2" required/>
+                        <button type="submit" class="rounded-tr rounded-br py-2 bg-gray-400 hover:bg-gray-300">
+                            SEND
+                        </button>
+                    </div>    
+                </div>
+            </form>
+            <button id="clear" class="rounded px-12 py-2 bg-gray-300 mx-12" onclick="clear_conversation()">Clear Conversation</button>
+        </div> -->
+    </div>
+</div>
+</html>
+<script>
+    messages = [];
 function insertNewChat(event) {
   event.preventDefault();
   let formData = new FormData(event.target);
@@ -142,3 +207,5 @@ async function get_history_string(){
   console.log(output)
   return output;
 }
+
+</script>
