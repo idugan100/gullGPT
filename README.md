@@ -6,6 +6,8 @@
 - Mikey Montebell, Salisbury Univeristy, jamesmontebell4@gmail.com 
 ## Name of Institution Solution Serves
 - Salisbury University
+## Live Link
+[gullgpt.study](http://gullgpt.study)
 ## Diagram of Product Architecture
 ![alt text](./documentation/architecture.png)
 ## Cost
