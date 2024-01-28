@@ -70,7 +70,7 @@ app.add_middleware(
 add_routes(
     app,
     chain,
-    path="/su",
+    path="/chat/su",
 )
 
 
