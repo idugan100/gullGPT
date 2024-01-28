@@ -28,3 +28,4 @@
 - Tailwind CSS
 - HTML
 - Azure OpenAI
+- ngnix
