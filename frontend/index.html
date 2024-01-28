@@ -78,7 +78,7 @@ function insertNewChat(event) {
 async function chat_model() {
   let string = await get_history_string()
 
-  url = "http://127.0.0.1:8000/su/invoke";
+  url = "http://3.144.255.174/chat/su/invoke";
   const response = await fetch(url, {
     method: "POST", // HTTP POST method
     headers: {
@@ -189,7 +189,7 @@ async function get_history_string(){
     }
   }
 
-  url = "http://127.0.0.1:8002/summarize/invoke";
+  url = "http://3.144.255.174/text/summarize/invoke";
   const response = await fetch(url, {
     method: "POST", // HTTP POST method
     headers: {
