@@ -50,7 +50,7 @@ app.add_middleware(
 add_routes(
     app,
     chain,
-    path="/summarize",
+    path="/text/summarize",
 )
 
 if __name__ == "__main__":
