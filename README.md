@@ -15,16 +15,16 @@
     - ![alt text](./documentation/redis_cost.png)
 - $5 per month linux vm, for document storage and running ETL scripts and langchain hosting
     - ![alt text](./documentation/vm_cost.png)
-- $3.75 in openAI credits over the weekend
+- $3.75 in openAI credits over the weekend (has switched to using azure open ai in production)
     - ![alt text](./documentation/openAI_cost.png)
 ## DEMO VIDEO
 - Isaac might do this?
 ## Tech
 - Python
-- Redis
+- Redis (hosted on azure via redis cloud)
 - Langchain
 - Langserve
 - Javascript
 - Tailwind CSS
 - HTML
-- OpenAI
+- Azure OpenAI
