@@ -16,8 +16,8 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
 os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
 
-chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="chat")
-# chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, temperature=0)
+# chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="chat")
+chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, temperature=0)
 
 template = """
 rewrite the below dialoge in half the words.
