@@ -12,6 +12,10 @@ from fastapi import FastAPI
 from langserve import add_routes
 from langchain_openai import AzureOpenAIEmbeddings
 from fastapi.middleware.cors import CORSMiddleware
+from langchain.retrievers.multi_query import MultiQueryRetriever
+from langchain.retrievers import ContextualCompressionRetriever
+from langchain.retrievers.document_compressors import LLMChainExtractor
+
 
 load_dotenv()
 
@@ -32,8 +36,17 @@ new_rds = Redis.from_existing_index(
 retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
 # chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="chat")
-chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
+chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4")
+compressor = LLMChainExtractor.from_llm(chat_model)
 
+
+multi_query_retriver = MultiQueryRetriever.from_llm(
+    retriever=retriever, llm=chat_model
+)
+
+compression_retriever = ContextualCompressionRetriever(
+    base_compressor=compressor, base_retriever=multi_query_retriver
+)
 
 template = """
 Please respond as a friendly and intelligent admissions advisor for salisbury university. 
@@ -47,7 +60,7 @@ chat_prompt = ChatPromptTemplate.from_messages([
     ("system", template),
 ])
 
-chain = ({"context": retriever, "input": RunnablePassthrough(),}
+chain = ({"context": compression_retriever, "input": RunnablePassthrough(),}
         | chat_prompt
         | chat_model
         | StrOutputParser()
