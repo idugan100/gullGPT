@@ -11,7 +11,7 @@
 
 ## Live Link
 
-[gullgpt.study](http://gullgpt.study)
+[gullgpt.study](https://gullgpt.study)
 
 ## [Diagram of Product Architecture](./documentation/documentation.md)
 
