@@ -83,7 +83,52 @@ html_urls=[
     {"url":"https://www.salisbury.edu/admissions/financial-aid/types-of-aid/loan/", "path":"../data/html/Loans | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/admissions/financial-aid/types-of-aid/federal-work-study.aspx", "path":"../data/html/Federal Work-Study | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/administration/academic-affairs/registrar/veterans/", "path":"../data/html/Veteran Services | Salisbury University.html"},
-    {"url":"https://www.salisbury.edu/admissions/financial-aid/cost-of-attendance/", "path":"../data/html/Cost of Attendance | Salisbury University.html"}
+    {"url":"https://www.salisbury.edu/admissions/financial-aid/cost-of-attendance/", "path":"../data/html/Cost of Attendance | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/campus-map/building-info.aspx","path":"../data/html/Building Hours & Codes | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/experience-campus/athletics/","path":"../data/html/Athletics | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/experience-campus/athletics/campus-recreation/facilities/","path":"../data/html/Campus Recreation Facilities | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/experience-campus/athletics/discover-sammy.aspx","path":"../data/html/Sammy Sea Gull: Leader of Sea Gull Nation | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/student-affairs/student-health-services/","path":"../data/html/Student Health Services | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/coronavirus/","path":"../data/html/Coronavirus (COVID-19) Information | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/student-affairs/student-health-services/fees.aspx","path":"../data/html/Student Health Services Fees & Policies | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/student-affairs/counseling-center/","path":"../data/html/Counseling Center | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/advising-center/support-services.aspx","path":"../data/html/Additional Support Services | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/center-for-student-achievement/","path":"../data/html/Center For Student Achievement | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/police/","path":"../data/html/University Police | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/student-affairs/counseling-center/FAQs.aspx","path":"../data/html/FAQs | Counseling Center | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/student-affairs/disability-resource-center/","path":"../data/html/Disability Resource Center | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/student-affairs/disability-resource-center/requesting-accommodations.aspx","path":"../data/html/Requesting Academic & Housing Accommodations | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/outcomes.aspx","path":"../data/html/Salisbury University Student Outcomes | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/mission-values.aspx","path":"../data/html/Salisbury University Mission & Values | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/campus-history/","path":"../data/html/Campus History | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/campus-leadership.aspx","path":"../data/html/Campus Leadership | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/offices-and-departments.aspx","path":"../data/html/Salisbury University Offices & Departments | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/community-outreach/performing.aspx","path":"../data/html/Performing Ensembles: Experience the Arts | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/community-outreach/galleries.aspx","path":"../data/html/Galleries & Museums | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/community-outreach/institutes-and-centers.aspx","path":"../data/html/Institutes & Centers | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/events/","path":"../data/html/Events @ Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/registrar/","path":"../data/html/Office of the Registrar | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/registrar/registration.aspx","path":"../data/html/Registration | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/explore-academics/study-abroad.aspx","path":"../data/html/Study Abroad at Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/health-and-human-services/","path":"../data/html/College of Health & Human Services | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/business/","path":"../data/html/Perdue School of Business Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/liberal-arts/","path":"../data/html/Fulton School of Liberal Arts | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/education/","path":"../data/html/Education Major, Teaching college | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/academic-offices/honors/","path":"../data/html/Clarke Honors College at SU | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/explore-academics/research/undergraduate-student-research.aspx","path":"../data/html/Undergraduate Student Research | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/explore-academics/research/graduate-student-research.aspx","path":"../data/html/Graduate Student Research | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/explore-academics/research/faculty-research.aspx","path":"../data/html/Faculty Research | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/news/su-in-media.aspx","path":"../data/html/SU in the Media | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/news/","path":"../data/html/University News | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/discover-su/our-region.aspx","path":"../data/html/Our Region: Welcome to Salisbury! | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/libraries/hours.aspx","path":"../data/html/Library Hours | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/orientation/faq.aspx","path":"../data/html/FAQs | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/orientation/orientation-checklist.aspx","path":"../data/html/Orientation Checklist – Students Starting Fall 2023 | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/student-affairs/dining-services/meal-plans/dining-dollars.aspx","path":"../data/html/Dining Dollars | Salisbury Dining Services | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/admissions/admitted-students.aspx","path":"../data/html/For Admitted Students | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/administration/academic-affairs/university-writing-center/","path":"../data/html/University Writing Center | Salisbury University.html"},
+    {"url":"https://www.salisbury.edu/explore-academics/internships.aspx","path":"../data/html/Internships for undergraduate students at Salisbury University.html"},
+
     ]
     #{"url":"", "path":"../data/html/| Salisbury University.html"}
 
@@ -112,8 +157,8 @@ pdf_urls=[
     {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/_files/Scholarly-Project-Completion-defense-Submission-Form.pdf","path":"../data/pdf/Scholarly-Project-completion-defense-Submission-Form.pdf"},
     {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/_files/Scholarly-Project-Manual.pdf","path":"../data/pdf/Scholarly-Project-manual.pdf"},
     {"url":"https://www.salisbury.edu/administration/academic-affairs/graduate-studies-and-research/graduate-studies/_files/seven-year-waiver-2021.pdf","path":"../data/pdf/seven-year-waiver-2021.pdf"},
-    {"url":"https://www.salisbury.edu/administration/administration-and-finance-offices/financial-services/accounts-receivable-cashiers-office/_files/tuition-fee-schedule-2023-2024.pdf","path":"../data/pdf/tuition-fee-schedule-2023-2024.pdf"}
-
+    {"url":"https://www.salisbury.edu/administration/administration-and-finance-offices/financial-services/accounts-receivable-cashiers-office/_files/tuition-fee-schedule-2023-2024.pdf","path":"../data/pdf/tuition-fee-schedule-2023-2024.pdf"},
+    {"url":"https://www.salisbury.edu/admissions/orientation/_docs/new-student-guide.pdf","path":"../data/pdf/new-student-guide.pdf"}
 ]
 
 for pdf_url in pdf_urls:
