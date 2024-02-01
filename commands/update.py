@@ -3,21 +3,27 @@ import os
 from datetime import datetime
 startTime = datetime.now()
 
-def download_html(url, path):
+def download_new_file(url, path, type):
     response = requests.get(url)
     
-    # Check if the request was successful
     if response.status_code == 200:
         os.remove(path)
         print("removed old file")
 
-        # Write the HTML content to a file
-        with open(path, 'w', encoding='utf-8') as f:
-            f.write(response.text)
-        print(f"HTML downloaded successfully and saved as {path}")
+        if type=="html":
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write(response.text)
+        elif type=="pdf":
+            with open(path, 'wb') as pdf_file:
+                pdf_file.write(response.content)
+        else:
+            print("unknown file type - skipping")
+            return
+        print(f"file downloaded successfully and saved as {path}")
     else:
-        print("Failed to download HTML")
+        print("Failed to download file")
 
+#add sqlite query here for html urls and paths
 html_urls=[
     {"url":"https://www.salisbury.edu/admissions/transfer-students/academic-requirements.aspx", "path":"../data/html/Academic Requirements For Transfer Applicants | Salisbury University.html"},
     {"url":"https://www.salisbury.edu/admissions/transfer-students/admissions-requirements.aspx","path":"../data/html/Admissions Requirements For Transfer Applicants | Salisbury University.html"},
@@ -133,21 +139,9 @@ html_urls=[
     #{"url":"", "path":"../data/html/| Salisbury University.html"}
 
 for html_url in html_urls:
-    download_html(html_url["url"],html_url["path"])
+    download_new_file(html_url["url"],html_url["path"],"html")
 
-def download_pdf(url, path):
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        os.remove(path)
-        print("removed old file")
-
-        with open(path, 'wb') as pdf_file:
-            pdf_file.write(response.content)
-        print(f"PDF downloaded successfully and saved to: {path}")
-    else:
-        print(f"Failed to download PDF. Status code: {response.status_code}")
-        
+#add sqlite query here for pdf urls and path 
 pdf_urls=[
     {"url":"https://www.salisbury.edu/administration/administration-and-finance-offices/financial-services/accounts-receivable-cashiers-office/_files/course-fee-schedule-fy24.pdf","path":"../data/pdf/course-fee-Schedule-fy24.pdf"},
     {"url":"https://www.salisbury.edu/administration//academic-affairs/graduate-studies-and-research/_files/DeferralofApplication2015TEST.pdf","path":"../data/pdf/DeferralofApplication2015TEST.pdf"},
@@ -162,6 +156,6 @@ pdf_urls=[
 ]
 
 for pdf_url in pdf_urls:
-    download_pdf(pdf_url["url"],pdf_url["path"])
+    download_new_file(pdf_url["url"],pdf_url["path"],"pdf")
 
 print(datetime.now() - startTime)
