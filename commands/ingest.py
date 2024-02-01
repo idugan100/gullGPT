@@ -3,101 +3,49 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from dotenv import load_dotenv
 from langchain_community.vectorstores.redis import Redis
-from langchain_community.document_loaders.csv_loader import CSVLoader
+from csv_loader import get_csv_documents
 import os
 from langchain_openai import AzureOpenAIEmbeddings
 from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.document_loaders import PyPDFLoader
 from datetime import datetime
-startTime = datetime.now()
 
+startTime = datetime.now()
 
 load_dotenv()
 API_KEY=os.getenv('OPENAI_API_KEY')
-os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
-os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
+AZURE_OPENAI_API_KEY= os.getenv('AZURE_OPENAI_API_KEY')
+AZURE_OPENAI_ENDPOINT= os.getenv('AZURE_OPENAI_ENDPOINT')
 REDIS=os.getenv("REDIS_URL")
-
 
 print("preparing to load pdf files")
 pdf_loader = DirectoryLoader('../data/pdf/', loader_cls=PyPDFLoader)
+pdf_documents=pdf_loader.load()
 print("pdf file loading complete")
 
 print("preparing to load html files")
 html_loader = DirectoryLoader('../data/html/', loader_cls=UnstructuredHTMLLoader)
+html_documents = html_loader.load()
 print("html loading complete")
 
 print("preparing to load csv files")
-# csv_loader = DirectoryLoader('../data/csv/', loader_cls=CSVLoader)
-csv_loader1 = CSVLoader(file_path='../data/csv/classes.csv',csv_args={
-    'delimiter': ',',
-    'quotechar': '"',
-    'fieldnames': ["description","courseNumber","departmentCode","courseTitle","avg_gpa","A_rate","B_rate","C_rate","D_rate","F_rate","Withdraw_rate","total_enrollment"]
-})
-csv_loader2 = CSVLoader(file_path='../data/csv/ap.csv',csv_args={
-    'delimiter': ',',
-    'quotechar': '"',
-    'fieldnames': ['AP course', 'minimum score on ap test', 'college credits awarded','coursed granted prior to fall 2024','courses grated after fall 2024']
-})
-csv_loader3 = CSVLoader(file_path='../data/csv/ib.csv',csv_args={
-    'delimiter': ',',
-    'quotechar': '"',
-    'fieldnames': ['International Baccalaureate (IB)', 'credits granted', 'courses granted']
-})
-csv_loader4 = CSVLoader(file_path='../data/csv/professors.csv',csv_args={
-    'delimiter': ',',
-    'quotechar': '"',
-    'fieldnames': ["firstName","lastName","avg_gpa","total_enrollment","Withdraw_rate","A_rate","B_rate","C_rate","D_rate","F_rate","courses_taught"
-]
-})
-csv_loader5 = CSVLoader(file_path='../data/csv/costs.csv',csv_args={
-    'delimiter': ',',
-    'quotechar': '"',
-    'fieldnames': ['Fee Type', 'Instate', 'out of state']
-})
-csv_loader6 = CSVLoader(file_path='../data/csv/total_cost.csv',csv_args={
-    'delimiter': ',',
-    'quotechar': '"',
-    'fieldnames': ['Type of student', 'total costs']
-})
-csv_loader7 = CSVLoader(file_path='../data/csv/grad_costs.csv',csv_args={
-    'delimiter': ',',
-    'quotechar': '"',
-    'fieldnames': ['Per credit hour fee', 'maryland residents','non-residents','Non-Residents (Regional Hagerstown)']
-})
-csv_loader8 = CSVLoader(file_path='../data/csv/student_budget.csv',csv_args={
-    'delimiter': ',',
-    'quotechar': '"',
-    'fieldnames': ['Fee', 'maryland residents','non-residents','Non-Residents (Regional Hagerstown)']
-})
-csv_loader9 = CSVLoader(file_path='../data/csv/gened.csv',csv_args={
-    'delimiter': ',',
-    'quotechar': '"',
-    'fieldnames': ['Gened Group', 'Category','Requirements']
-})
-print("loaded csv files")
+csv_documents = get_csv_documents()
+print("csv loading complete")
 
-data = [
-    *html_loader.load(),
-    *csv_loader1.load(),
-    *csv_loader2.load(),
-    *csv_loader3.load(),
-    *csv_loader4.load(),
-    *csv_loader5.load(),
-    *csv_loader6.load(),
-    *csv_loader7.load(),
-    *csv_loader8.load(),
-    *pdf_loader.load()
+documents = [
+    *pdf_documents,
+    *html_documents,
+    *csv_documents
 ]
 
+print("beginning document splitting")
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=2000,
     chunk_overlap=200,
     length_function=len,
     is_separator_regex=False,
 )
-print("beginning document splitting")
-documents=text_splitter.split_documents(data)
+split_documents=text_splitter.split_documents(documents)
 print("documents have finished being split")
 
 embeddings_model = OpenAIEmbeddings(openai_api_key=API_KEY)
@@ -106,27 +54,23 @@ embeddings_model = OpenAIEmbeddings(openai_api_key=API_KEY)
 #     openai_api_version="2023-05-15",
 # )
 print("embeddings fetched")
+
 Redis.drop_index(
     index_name="su_data",
     delete_documents=True,
     redis_url=REDIS,
 )
-
 print("old data droped")
+
 rds = Redis.from_documents(
-    documents,
+    split_documents,
     embeddings_model,
     redis_url=REDIS,
     index_name="su_data",
 )
 print("new data loaded to redis")
+
 rds.write_schema("redis_schema.yaml")
 print("redis schema written")
-print("data ingestion completed")
-print(datetime.now() - startTime)
 
-
-
-
-
-
+print("data ingestion completed in " + str(datetime.now() - startTime) + " seconds")
