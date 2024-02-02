@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import os
 from langchain_community.vectorstores.redis import Redis
 from langchain_openai import ChatOpenAI
-from langchain_openai import AzureChatOpenAI
 from langchain.prompts.chat import ChatPromptTemplate
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -28,8 +27,7 @@ load_dotenv()
 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 REDIS_URL = os.getenv('REDIS_URL')
-os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
-os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
+
 embeddings_model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
 new_rds = Redis.from_existing_index(

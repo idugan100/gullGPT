@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 from langchain_community.vectorstores.redis import Redis
 from csv_loader import get_csv_documents
 import os
-from langchain_openai import AzureOpenAIEmbeddings
 from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.document_loaders import PyPDFLoader
 from datetime import datetime
@@ -16,8 +15,6 @@ startTime = datetime.now()
 
 load_dotenv()
 API_KEY=os.getenv('OPENAI_API_KEY')
-AZURE_OPENAI_API_KEY= os.getenv('AZURE_OPENAI_API_KEY')
-AZURE_OPENAI_ENDPOINT= os.getenv('AZURE_OPENAI_ENDPOINT')
 REDIS=os.getenv("REDIS_URL")
 
 print("preparing to load pdf files")
@@ -51,10 +48,7 @@ split_documents=text_splitter.split_documents(documents)
 print("documents have finished being split")
 
 embeddings_model = OpenAIEmbeddings(openai_api_key=API_KEY)
-# embeddings_model = AzureOpenAIEmbeddings(
-#     azure_deployment="embeddings",
-#     openai_api_version="2023-05-15",
-# )
+
 print("embeddings fetched")
 
 Redis.drop_index(
