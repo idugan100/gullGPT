@@ -15,6 +15,9 @@ from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import LLMChainExtractor
 
+model = input("What model do you want to use? (3.5, 4, 4.5): ")
+highIQ = input("Do you want to run this in highIQ mode? This will make the service much slower (y/n): ")
+model_list ={"3.5":"gpt-3.5-turbo","4":"gpt-4","4.5":"gpt-4-0125-preview"}
 
 load_dotenv()
 
@@ -33,17 +36,20 @@ new_rds = Redis.from_existing_index(
 
 retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
-chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4-0125-preview")
+chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model=model_list[model])
 compressor = LLMChainExtractor.from_llm(chat_model)
 
+if highIQ=='y':
+    multi_query_retriver = MultiQueryRetriever.from_llm(
+        retriever=retriever, llm=chat_model
+    )
 
-multi_query_retriver = MultiQueryRetriever.from_llm(
-    retriever=retriever, llm=chat_model
-)
-
-compression_retriever = ContextualCompressionRetriever(
-    base_compressor=compressor, base_retriever=multi_query_retriver
-)
+    compression_retriever = ContextualCompressionRetriever(
+        base_compressor=compressor, base_retriever=multi_query_retriver
+    )
+    final_retriever = compression_retriever
+else:
+    final_retriever = retriever
 
 template = """
 Please respond as a friendly and intelligent admissions advisor for salisbury university. 
@@ -57,7 +63,7 @@ chat_prompt = ChatPromptTemplate.from_messages([
     ("system", template),
 ])
 
-chain = ({"context": compression_retriever, "input": RunnablePassthrough(),}
+chain = ({"context": final_retriever, "input": RunnablePassthrough(),}
         | chat_prompt
         | chat_model
         | StrOutputParser()
