@@ -9,6 +9,8 @@ from langchain_openai import AzureOpenAIEmbeddings
 from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.document_loaders import PyPDFLoader
 from datetime import datetime
+from langchain.cache import InMemoryCache
+
 
 startTime = datetime.now()
 
@@ -69,6 +71,9 @@ rds = Redis.from_documents(
     index_name="su_data",
 )
 print("new data loaded to redis")
+
+InMemoryCache.clear()
+print("cache cleared")
 
 rds.write_schema("redis_schema.yaml")
 print("redis schema written")
