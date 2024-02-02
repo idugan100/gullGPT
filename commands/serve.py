@@ -14,6 +14,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import LLMChainExtractor
+from langchain.globals import set_llm_cache
+from langchain.cache import InMemoryCache
+
+set_llm_cache(InMemoryCache())
+
 
 model = input("What model do you want to use? (3.5, 4, 4.5): ")
 highIQ = input("Do you want to run this in highIQ mode? This will make the service much slower (y/n): ")
