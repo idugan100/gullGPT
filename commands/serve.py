@@ -10,7 +10,6 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from fastapi import FastAPI
 from langserve import add_routes
-from langchain_openai import AzureOpenAIEmbeddings
 from fastapi.middleware.cors import CORSMiddleware
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.retrievers import ContextualCompressionRetriever
@@ -23,7 +22,6 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 REDIS_URL = os.getenv('REDIS_URL')
 os.environ["AZURE_OPENAI_API_KEY"] = os.getenv('AZURE_OPENAI_API_KEY')
 os.environ["AZURE_OPENAI_ENDPOINT"] = os.getenv('AZURE_OPENAI_ENDPOINT')
-# embeddings_model = AzureOpenAIEmbeddings(openai_api_version="2023-05-15",azure_deployment="embeddings")
 embeddings_model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
 new_rds = Redis.from_existing_index(
@@ -35,7 +33,6 @@ new_rds = Redis.from_existing_index(
 
 retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
-# chat_model = AzureChatOpenAI(openai_api_version="2023-05-15",azure_deployment="chat")
 chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-4-0125-preview")
 compressor = LLMChainExtractor.from_llm(chat_model)
 
