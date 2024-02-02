@@ -66,7 +66,7 @@ rds = Redis.from_documents(
 )
 print("new data loaded to redis")
 
-InMemoryCache.clear()
+InMemoryCache().clear()
 print("cache cleared")
 
 rds.write_schema("redis_schema.yaml")
