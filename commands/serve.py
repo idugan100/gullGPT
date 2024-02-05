@@ -15,6 +15,9 @@ from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import LLMChainExtractor
 from langchain.globals import set_llm_cache
 from langchain.cache import InMemoryCache
+from langchain_community.vectorstores.sqlitevss import SQLiteVSS
+import sqlite3
+import sqlite_vss
 
 set_llm_cache(InMemoryCache())
 
@@ -24,20 +27,22 @@ highIQ = input("Do you want to run this in highIQ mode? This will make the servi
 model_list ={"3.5":"gpt-3.5-turbo","4":"gpt-4","4.5":"gpt-4-0125-preview"}
 
 load_dotenv()
-
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 REDIS_URL = os.getenv('REDIS_URL')
 
 embeddings_model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
-new_rds = Redis.from_existing_index(
-    embeddings_model,
-    index_name="su_data",
-    redis_url=REDIS_URL,
-    schema="redis_schema.yaml",
+connection = sqlite3.connect("../data/data.db", check_same_thread=False)
+connection.row_factory = sqlite3.Row
+connection.enable_load_extension(True)
+sqlite_vss.load(connection)
+connection.enable_load_extension(False)
+
+db = SQLiteVSS(
+    table="vectors", embedding=embeddings_model, connection=connection
 )
 
-retriever = new_rds.as_retriever(search_type="similarity", search_kwargs={"k": 5})
+retriever = db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
 chat_model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model=model_list[model])
 compressor = LLMChainExtractor.from_llm(chat_model)
@@ -97,3 +102,8 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="localhost", port=8000)
+
+
+
+
+
