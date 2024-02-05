@@ -62,7 +62,7 @@ embeddings_model = OpenAIEmbeddings(openai_api_key=API_KEY)
 print("embeddings fetched")
 
 
-connection = sqlite3.connect("../data/data.db")
+connection = sqlite3.connect("../../data.db")
 cursor = connection.cursor()
 cursor.execute("DELETE FROM vectors")
 connection.commit()
@@ -76,7 +76,7 @@ for i in range(0, len(split_documents),500):
         chunk,
         embeddings_model,
         table="vectors",
-        db_file="../data/data.db",
+        db_file="../../data.db",
     )
     print("chunk inserted. waiting for timeout")
     time.sleep(60)

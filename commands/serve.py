@@ -32,7 +32,7 @@ REDIS_URL = os.getenv('REDIS_URL')
 
 embeddings_model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
-connection = sqlite3.connect("../data/data.db", check_same_thread=False)
+connection = sqlite3.connect("../../data.db", check_same_thread=False)
 connection.row_factory = sqlite3.Row
 connection.enable_load_extension(True)
 sqlite_vss.load(connection)
