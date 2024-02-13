@@ -45,20 +45,6 @@
             </div>
 
         </div>
-        <!--Text From User-->
-        <!-- <div class="flex justify-between border-[#FFC31F]/50 border-t-2 flex items-center py-4 px-2">
-            <form id="newChat" onsubmit="insertNewChat(event)">
-                <div class="snap-end">
-                    <div id="inputBar">
-                        <input type="text" id="message" name="message" placeholder="type here..." class="flex-l rounded-tl rounded-bl px-12 py-2 bg-gray-300 ml-2" required/>
-                        <button type="submit" class="rounded-tr rounded-br py-2 bg-gray-400 hover:bg-gray-300">
-                            SEND
-                        </button>
-                    </div>    
-                </div>
-            </form>
-            <button id="clear" class="rounded px-12 py-2 bg-gray-300 mx-12" onclick="clear_conversation()">Clear Conversation</button>
-        </div> -->
     </div>
 </div>
 </html>
@@ -101,9 +87,15 @@ function render_message(element) {
 
   let div = document.createElement("div");
   let span = document.createElement("span");
+  let time = document.createElement("div");
+
+  const timestamp = new Date();
+  const formattedTimestamp = timestamp.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
   if (element.hasOwnProperty("user")) {
     span.textContent = element.user;
+    time.textContent = formattedTimestamp;
+    time.classList.add("text-white", "text-sm");
     span.classList.add(
       "bg-gray-300",
       "px-2",
@@ -120,33 +112,30 @@ function render_message(element) {
     div.classList.add("flex", "flex-col", "items-end");
   } else {
     span.textContent = element.ai;
+    time.textContent = formattedTimestamp;
+    time.classList.add("text-white", "text-sm");
+
+    div.classList.add("flex", "flex-col", "items-start");
+
     span.classList.add(
-      "px-2",
-      "py-2",
-      "mt-2",
-      "mb-2",
-      "rounded-b-xl",
-      "rounded-tr-xl",
-      "w-1/2",
-      "loading:animate-pulse"
-    );
-    div.classList.add(
       "bg-[#8A0000]",
       "px-2",
       "py-2",
+      "mt-2",
+      "mb-2",
       "rounded-b-xl",
       "rounded-tl-xl",
-      "mb-2",
-      "mt-2",
       "w-1/2",
-      "text-white",
       "shadow-[#FFC31F]/25",
       "shadow-md",
-      "loading:animate-bounce"
+      "loading:animate-pulse",
+      "text-white",
     );
   }
   chatHolder.appendChild(div);
   div.appendChild(span);
+  div.appendChild(time);
+  console.log(formattedTimestamp);
 }
 
 function clear_conversation() {
