@@ -22,7 +22,6 @@ startTime = datetime.now()
 
 load_dotenv()
 API_KEY=os.getenv('OPENAI_API_KEY')
-REDIS=os.getenv("REDIS_URL")
 
 print("preparing to load pdf files")
 pdf_loader = DirectoryLoader('../data/pdf/', loader_cls=PyPDFLoader)

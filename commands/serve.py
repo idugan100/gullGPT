@@ -28,7 +28,6 @@ model_list ={"3.5":"gpt-3.5-turbo","4":"gpt-4","4.5":"gpt-4-0125-preview"}
 
 load_dotenv()
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-REDIS_URL = os.getenv('REDIS_URL')
 
 embeddings_model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
